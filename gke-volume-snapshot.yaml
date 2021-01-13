@@ -1,0 +1,16 @@
+# create snapshot class
+apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshotClass
+metadata:
+  name: snapshot-class
+  driver: csi-driver
+  deletionPolicy: Delete
+
+apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshot
+metadata:
+  name: my-snapshot
+spec:
+  volumeSnapshotClassName: snapshot-class
+  source:
+    persistentVolumeClaimName: pvc
